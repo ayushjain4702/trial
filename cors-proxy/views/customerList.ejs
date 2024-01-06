@@ -1,0 +1,58 @@
+<!-- customerList.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer List</title>
+</head>
+<body>
+  <h1>Customer List</h1>
+  <!-- <p>Welcome! Token: <%= token %></p>
+   -->
+   <p>Welcome</p>
+  <ul>
+    <% customers.forEach(customer => { %>
+      <li>
+        <%= customer.first_name %> <%= customer.last_name %> - <%= customer.email %> -  <%= customer.phone %> - <%= customer.address %>
+        <button onclick="updateCustomer('<%= customer.uuid %>')">Update</button>
+        <button onclick="deleteCustomer('<%= customer.uuid %>')">Delete</button>
+      </li>
+    <% }); %>
+  </ul>
+
+  <!-- Add Customer button -->
+  <a href="/addCustomer?token=<%= token %>">
+    <button>Add Customer</button>
+  </a>
+
+  <!-- <script>
+    // JavaScript functions for updating and deleting customers
+    function updateCustomer(uuid) {
+      // Redirect to the updateCustomer route with the token and customer uuid
+      window.location.href = `/updateCustomer?token=<%= token %>&uuid=${uuid}`;
+    }
+
+    function deleteCustomer(uuid) {
+      // Make API call to delete the customer
+      fetch(`/deleteCustomer/${uuid}?token=<%= token %>`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (response.ok) {
+          // Reload the page after successful deletion
+          window.location.reload();
+        } else {
+          // Handle error if needed
+          console.error('Error deleting customer:', response.statusText);
+        }
+      })
+      .catch(error => {
+        // Handle fetch error if needed
+        console.error('Fetch error:', error.message);
+      });
+    }
+  </script> -->
+</body>
+</html>
